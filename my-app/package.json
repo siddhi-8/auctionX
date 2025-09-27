@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:push": "npx drizzle-kit push --config=drizzle.config.ts",
+    "db:studio": "npx drizzle-kit studio --config=drizzle.config.ts"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.13.8",
@@ -23,7 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "drizzle-kit": "^0.31.4",
+    "drizzle-kit": "^0.31.5",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
     "tailwindcss": "^4",
