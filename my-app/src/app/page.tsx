@@ -1,3 +1,4 @@
+import SignIn from "@/components/sign-in";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { database } from "@/db/Database";
@@ -10,6 +11,7 @@ export default async function HomePage() {
 
   return (
     <main className="container mx-auto py-12">
+      <SignIn />
       <form
         action={async (formData: FormData) => {
           "use server";
