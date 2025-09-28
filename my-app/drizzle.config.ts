@@ -11,4 +11,5 @@ export default defineConfig({
   verbose: true,
   strict: true,
 });
+
 // he first commit madhe empty hita atta bghu ya

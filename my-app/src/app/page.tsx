@@ -6,7 +6,7 @@ export default async function HomePage() {
   const bids = await database.query.bids.findMany();
 
   return (
-    <main className="">
+    <main className="container mx-auto">
       <form
         action={async (formData: FormData) => {
           "use server";
