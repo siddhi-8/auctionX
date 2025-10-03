@@ -12,4 +12,4 @@ export default defineConfig({
   strict: true,
 });
 
-// he first commit madhe empty hita atta bghu ya
+// he first commit madhe empty hota atta bghu ya
