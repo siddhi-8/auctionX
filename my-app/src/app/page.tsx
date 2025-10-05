@@ -29,6 +29,7 @@ export default async function HomePage() {
       {allItems.map((item) => (
         <div key={item.id} className="border p-4 rounded-xl">
           {item.name}
+          starting price: {item.startingPrice / 100}
         </div>
       ))}
       </div>

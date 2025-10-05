@@ -19,8 +19,9 @@ export default async function CreatePage() {
         <Input 
           required
           className="max-w-lg" 
-          name="startPrice" 
+          name="startingPrice" 
           type="number" 
+          step="0.01"
           placeholder="Starting Price" 
         />
         <Button className="self-end" type="submit">Post item</Button>

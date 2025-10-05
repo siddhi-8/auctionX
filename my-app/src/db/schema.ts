@@ -75,7 +75,8 @@ export const items= pgTable("bb_item", {
   userId: text("userId")
   .notNull()
   .references(() => users.id, { onDelete: "cascade" }),
-  name: text("name").notNull()
+  name: text("name").notNull(),
+  startingPrice: integer("startingPrice").notNull().default(0)
 });
 // bb_bids is the name of the table in our actuall postgre database
 // id is the name of the column in our actuall postgre database

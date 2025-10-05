@@ -9,7 +9,7 @@ export async function Header() {
     return (
         <div className="bg-gray-200 py-4">
             <div className="container flex justify-between items-center">
-                <div className="flex items-center gap-12">
+                <div className="flex items-center gap-8">
                     <Image src="/logo.png" width="50" height="55" alt="Logo"/>
                     <Link href="/" className="flex item-center p-4 gap-2 hover:underline">
                         <span>AuctionX.com</span>
