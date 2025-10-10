@@ -1,39 +1,50 @@
 import { auth } from "@/auth";
-import SignIn from "@/components/sign-in";
-import { SignOut } from "@/components/sign-out";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { database } from "@/db/Database";
-import { bids as bidsSchema, items } from "@/db/schema";
-import { revalidatePath } from "next/cache";
+import Image from "next/image";
 
-// Make the function async
 export default async function HomePage() {
-  const session = await auth()
- 
+  const session = await auth();
   const allItems = await database.query.items.findMany();
 
-  if(!session) return null;
-
-  const user =  session.user;
-
-  if(!user) return null;
+  // Your authentication check remains the same
+  if (!session || !session.user) {
+    // Optionally, you could render a sign-in prompt here
+    return <div>Please sign in to view items.</div>;
+  }
 
   return (
-    <main className="container mx-auto py-12 px-4 space-y-8">
-      <h1 className="text-4xl font-bold mb-8">
-        Items for Sale
-      </h1>
-      
-      <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {allItems.map((item) => (
-        <div key={item.id} className="border p-4 rounded-xl">
-          {item.name}
-          starting price: {item.startingPrice / 100}
-        </div>
-      ))}
+    <main className="container mx-auto py-12 px-4">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">Items for Auction</h1>
+        {/* You can add a link to your create page here later */}
       </div>
-      
+
+      {/* A responsive grid to display the items */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {allItems.map((item) => (
+          <div key={item.id} className="border rounded-lg p-4 flex flex-col gap-2 shadow-md hover:shadow-lg transition-shadow">
+            
+            {/* Display the image using the Next.js <Image> component */}
+            <div className="relative w-full h-48 mb-2">
+              <Image
+                src={item.imageUrl!} // The '!' tells TypeScript we know this value is not null
+                alt={item.name}
+                fill // The 'fill' prop makes the image cover the parent div
+                style={{ objectFit: "cover" }} // Ensures aspect ratio is maintained without distortion
+                className="rounded-md"
+              />
+            </div>
+
+            <h2 className="text-xl font-bold truncate">{item.name}</h2>
+            <p className="text-lg">
+              Starting Price: {(item.startingPrice / 100).toFixed(2)} /-
+            </p>
+            <Button className="mt-auto">Place Bid</Button>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
+
