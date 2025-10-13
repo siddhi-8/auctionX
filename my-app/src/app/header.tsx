@@ -15,10 +15,20 @@ export async function Header() {
                         <span>AuctionX.com</span>
                     </Link>
 
-                    <div>
+                    <div className="flex item-center gap-8">
+                        <Link href="/" 
+                            className="flex item-center p-4 gap-2 hover:underline">
+                            All Auctions
+                        </Link>
+
                         <Link href="/items/create" 
                             className="flex item-center p-4 gap-2 hover:underline">
-                            Auction an Item
+                            Create Auction
+                        </Link>
+
+                        <Link href="/auctions" 
+                            className="flex item-center p-4 gap-2 hover:underline">
+                            My Auctions
                         </Link>
                     </div>
                 </div>
