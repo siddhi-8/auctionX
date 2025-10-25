@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { database } from "@/db/Database";
 import Image from "next/image";
+import Link from "next/link";
+
 
 export default async function HomePage() {
   const session = await auth();
@@ -40,7 +42,11 @@ export default async function HomePage() {
             <p className="text-lg">
               Starting Price: {(item.startingPrice / 100).toFixed(2)} /-
             </p>
-            <Button className="mt-auto">Place Bid</Button>
+            <Button className="mt-auto" asChild>
+              <Link href={`/items/${item.id}`}>Place Bid
+              </Link>
+            </Button>
+            
           </div>
         ))}
       </div>

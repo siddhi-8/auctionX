@@ -6,7 +6,7 @@ import type { AdapterAccountType } from "@auth/core/adapters"
 
 export const users = pgTable("bb_user", {
   id: text("id")
-    .primaryKey()
+    .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
   email: text("email").unique(),
