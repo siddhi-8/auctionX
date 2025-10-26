@@ -6,11 +6,11 @@ import { bids, items } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-import { Knock } from "@knocklabs/node";
+// import { Knock } from "@knocklabs/node";
 import { env } from "@/env";
 import { isBidOver } from "@/util/bids";
 
-const knock = new Knock({ apiKey: env.KNOCK_SECRET_KEY });
+// const knock = new Knock({ apiKey: env.KNOCK_SECRET_KEY });
 
 export async function createBidAction(itemId: number) {
   const session = await auth();
@@ -80,22 +80,22 @@ export async function createBidAction(itemId: number) {
     }
   }
 
-  if (recipients.length > 0) {
-    await knock.workflows.trigger("user-placed-bid", {
-      actor: {
-        id: userId,
-        name: session?.user?.name ?? "Anonymous",
-        email: session?.user?.email,
-        collection: "users",
-      },
-      recipients,
-      data: {
-        itemId,
-        bidAmount: latestBidValue,
-        itemName: item.name,
-      },
-    });
-  }
+  // if (recipients.length > 0) {
+  //   await knock.workflows.trigger("user-placed-bid", {
+  //     actor: {
+  //       id: userId,
+  //       name: session?.user?.name ?? "Anonymous",
+  //       email: session?.user?.email,
+  //       collection: "users",
+  //     },
+  //     recipients,
+  //     data: {
+  //       itemId,
+  //       bidAmount: latestBidValue,
+  //       itemName: item.name,
+  //     },
+  //   });
+  // }
 
   revalidatePath(`/items/${itemId}`);
 }
