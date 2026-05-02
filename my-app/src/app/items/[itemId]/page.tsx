@@ -18,9 +18,9 @@ function formatTimestamp(timestamp: Date) {
 }
 
 export default async function ItemPage(props: {
-  params: { itemId: string };
+  params: Promise<{ itemId: string }>;
 }) {
-  const { itemId } = props.params;
+  const { itemId } = await props.params;
   const session = await auth();
 
   const item = await getItem(parseInt(itemId));
